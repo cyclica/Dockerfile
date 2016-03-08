@@ -17,7 +17,23 @@ RUN apt-get update && apt-get install -y \
     libboost-dev \
     libboost-python-dev \
     libboost-regex-dev \
-    python-rdkit \
-    librdkit1 \
     rdkit-data \
     gcc \
+    git \
+    wget \
+    unzip
+ENV RDBASE=/opt/rdkit/
+ENV LD_LIBRARY_PATH=$RDBASE/lib:$LD_LIBRARY_PATH
+ENV PYTHONPATH=$RDBASE:$PYTHONPATH
+RUN wget https://sourceforge.net/projects/rdkit/files/latest/download?source=files -O rdkit.tgz \
+    && tar xzvf rdkit.tgz -C /opt \
+    && mv /opt/`ls /opt/` /opt/rdkit/ \
+    && . ~/.bashrc \
+    && cd $RDBASE/External/INCHI-API/ \
+    && ./download-inchi.sh \
+    && cd $RDBASE \
+    && mkdir build \
+    && cd build \
+    && cmake -DRDK_BUILD_INCHI_SUPPORT=ON .. # to install InChI generation code \
+    && make -j 8 # to use multiple processors \
+    && make install
