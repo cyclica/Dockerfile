@@ -44,6 +44,6 @@ RUN wget https://github.com/rdkit/rdkit/archive/Release_2016_09_4.tar.gz -O rdki
     && cd $RDBASE \
     && mkdir -p build \
     && cd build \
-    && cmake -DRDK_BUILD_INCHI_SUPPORT=ON .. \
-    && make \
-    && make install
+    && cmake -DRDK_BUILD_INCHI_SUPPORT=ON  -DPYTHON_EXECUTABLE='/usr/bin/python3.6'  -DPYTHON_INCLUDE_DIR='/usr/include/python3.6' -DPYTHON_LIBRARY='/usr/lib/python3.6' .. \
+    && make -j2 \
+    && make -j2 install
