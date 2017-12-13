@@ -10,14 +10,14 @@ RUN apt-get install -y python3.6 \
     python3.6-dev \
     python3-pip \
     python3.6-venv \
-    python-numpy \
-    python-scipy \
-    python-matplotlib \
-    ipython \
-    ipython-notebook \
-    python-pandas \
-    python-sympy \
-    python-nose \
+    python3-numpy \
+    python3-scipy \
+    python3-matplotlib \
+    ipython3 \
+    ipython3-notebook \
+    python3-pandas \
+    python3-sympy \
+    python3-nose \
     openbabel \
     build-essential \
     cmake \
@@ -39,10 +39,10 @@ ENV RDBASE=/opt/rdkit
 ENV LD_LIBRARY_PATH=$RDBASE/lib:$LD_LIBRARY_PATH
 ENV PYTHONPATH=$RDBASE:$PYTHONPATH
 RUN wget https://github.com/rdkit/rdkit/archive/Release_2016_09_4.tar.gz -O rdkit.tgz \
-    && mkdir $RDBASE \
+    && mkdir -p $RDBASE \
     && tar xzvf rdkit.tgz -C $RDBASE --strip-components 1 \
     && cd $RDBASE \
-    && mkdir build \
+    && mkdir -p build \
     && cd build \
     && cmake -DRDK_BUILD_INCHI_SUPPORT=ON .. \
     && make \
