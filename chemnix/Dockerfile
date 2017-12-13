@@ -1,20 +1,26 @@
 FROM ubuntu:16.04
 MAINTAINER Lenny Morayniss <leonard.morayniss@cyclicarx.com>
-RUN apt-get update && apt-get install -y \
-    python2.7 \
+
+RUN apt-get update && apt-get install -y python-software-properties \
+    software-properties-common
+
+RUN add-apt-repository ppa:jonathonf/python-3.6 && apt-get update
+
+RUN apt-get install -y python3.6 \
+    python3.6-dev \
+    python3-pip \
+    python3.6-venv \
     python-numpy \
-    python-scipy \ 
+    python-scipy \
     python-matplotlib \
     ipython \
     ipython-notebook \
     python-pandas \
     python-sympy \
     python-nose \
-    python-pip \
     openbabel \
     build-essential \
     cmake \
-    python-dev \
     libboost-dev \
     libboost-python-dev \
     libboost-regex-dev \
@@ -28,6 +34,7 @@ RUN apt-get update && apt-get install -y \
     libboost-serialization-dev \
     wget \
     unzip
+
 ENV RDBASE=/opt/rdkit
 ENV LD_LIBRARY_PATH=$RDBASE/lib:$LD_LIBRARY_PATH
 ENV PYTHONPATH=$RDBASE:$PYTHONPATH
