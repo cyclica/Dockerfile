@@ -1,5 +1,5 @@
-FROM cyclica/chemnix:201609
-MAINTAINER Lenny Morayniss <leonard.morayniss@cyclicarx.com>
+FROM cyclica/chemnix:20181114
+MAINTAINER Steve Constable <steve.constable@cyclicarx.com>
 RUN apt-get update && apt-get install -y \
     postgresql \
     libxml2-dev \
