@@ -3,18 +3,16 @@ MAINTAINER Steve Constable <steve.constable@cyclicarx.com>
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y \
     build-essential \
-    python2.7 \
-    python-numpy \
-    python-scipy \
-    python-matplotlib \
-    python-pandas \
-    python-sympy \
-    python-nose \
-    python-pip \
+    python3-numpy \
+    python3-scipy \
+    python3-matplotlib \
+    python3-pandas \
+    python3-sympy \
+    python3-nose \
+    python3-pip \
     openbabel \
-    build-essential \
     cmake \
-    python-dev \
+    python3-dev \
     libboost-dev \
     libboost-python-dev \
     libboost-regex-dev \
@@ -37,6 +35,6 @@ RUN wget https://github.com/rdkit/rdkit/archive/Release_2018_09_1.tar.gz -O rdki
     && cd $RDBASE \
     && mkdir build \
     && cd build \
-    && cmake -DRDK_BUILD_INCHI_SUPPORT=ON .. \
+    && cmake -DRDK_BUILD_INCHI_SUPPORT=ON -DPYTHON_EXECUTABLE=/usr/bin/python3 -DPYTHON_INCLUDE_DIR=/usr/include/python3.6m -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.6m.so .. \
     && make \
     && make install
