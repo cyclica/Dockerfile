@@ -1,12 +1,12 @@
-FROM ubuntu:16.04
-MAINTAINER Lenny Morayniss <leonard.morayniss@cyclicarx.com>
+FROM ubuntu:18.04
+MAINTAINER Steve Constable <steve.constable@cyclicarx.com>
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y \
+    build-essential \
     python2.7 \
     python-numpy \
-    python-scipy \ 
+    python-scipy \
     python-matplotlib \
-    ipython \
-    ipython-notebook \
     python-pandas \
     python-sympy \
     python-nose \
@@ -31,7 +31,7 @@ RUN apt-get update && apt-get install -y \
 ENV RDBASE=/opt/rdkit
 ENV LD_LIBRARY_PATH=$RDBASE/lib:$LD_LIBRARY_PATH
 ENV PYTHONPATH=$RDBASE:$PYTHONPATH
-RUN wget https://github.com/rdkit/rdkit/archive/Release_2016_09_4.tar.gz -O rdkit.tgz \
+RUN wget https://github.com/rdkit/rdkit/archive/Release_2018_09_1.tar.gz -O rdkit.tgz \
     && mkdir $RDBASE \
     && tar xzvf rdkit.tgz -C $RDBASE --strip-components 1 \
     && cd $RDBASE \
