@@ -7,7 +7,6 @@ RUN curl --silent --location https://deb.nodesource.com/setup_8.x | bash -
 
 RUN apt-get install -y \
     nodejs \
-    build-essential \
     swig \
     libopenbabel-dev
 
