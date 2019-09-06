@@ -11,6 +11,8 @@ RUN apt-get update && apt-get install -y \
     python3-nose \
     python3-pip \
     openbabel \
+    libopenbabel-dev \
+    swig \
     cmake \
     python3-dev \
     libboost-dev \
