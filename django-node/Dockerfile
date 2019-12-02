@@ -1,4 +1,4 @@
-FROM cyclica/django:20190103
+FROM cyclica/django:20191202
 
 MAINTAINER Steve Constable <steve.constable@cyclicarx.com>
 
