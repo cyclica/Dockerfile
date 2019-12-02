@@ -1,4 +1,4 @@
-FROM cyclica/chemnix:20190102
+FROM cyclica/chemnix:20191202
 MAINTAINER Steve Constable <steve.constable@cyclicarx.com>
 RUN apt-get update && apt-get install -y \
     postgresql \
