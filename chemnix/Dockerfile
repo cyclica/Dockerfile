@@ -1,4 +1,4 @@
-# version: 20210115
+# version: 20210118
 FROM ubuntu:20.04
 MAINTAINER Steve Constable <steve.constable@cyclicarx.com>
 ENV DEBIAN_FRONTEND=noninteractive
@@ -18,6 +18,7 @@ RUN apt-get install -y \
     openbabel \
     swig \
     cmake \
+    git \
     python3-dev \
     libboost1.67-all-dev \
     sqlite3 \
