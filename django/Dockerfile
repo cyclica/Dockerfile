@@ -1,4 +1,5 @@
-FROM cyclica/chemnix:20191202
+# version: 20210118
+FROM cyclica/chemnix:20210118
 MAINTAINER Steve Constable <steve.constable@cyclicarx.com>
 RUN apt-get update && apt-get install -y \
     postgresql \
