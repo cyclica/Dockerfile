@@ -1,4 +1,4 @@
-# version: 20210118
+# version: 20210222
 FROM ubuntu:20.04
 MAINTAINER Steve Constable <steve.constable@cyclicarx.com>
 ENV DEBIAN_FRONTEND=noninteractive
@@ -28,12 +28,12 @@ RUN apt-get install -y \
 ENV RDBASE=/opt/rdkit
 ENV LD_LIBRARY_PATH=$RDBASE/lib:$LD_LIBRARY_PATH
 ENV PYTHONPATH=$RDBASE:$PYTHONPATH
-RUN wget https://github.com/rdkit/rdkit/archive/Release_2020_03_1.tar.gz -O rdkit.tgz \
+RUN wget https://github.com/rdkit/rdkit/archive/Release_2020_03_4.tar.gz -O rdkit.tgz \
     && mkdir $RDBASE \
     && tar xzvf rdkit.tgz -C $RDBASE --strip-components 1 \
     && cd $RDBASE \
     && mkdir build \
     && cd build \
     && cmake -DRDK_BUILD_INCHI_SUPPORT=ON -DPYTHON_EXECUTABLE=/usr/bin/python3 -DPYTHON_INCLUDE_DIR=/usr/include/python3.8 -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.8.so .. \
-    && make \
+    && make -j 8 \
     && make install
