@@ -35,5 +35,5 @@ RUN wget https://github.com/rdkit/rdkit/archive/Release_2020_03_4.tar.gz -O rdki
     && mkdir build \
     && cd build \
     && cmake -DRDK_BUILD_INCHI_SUPPORT=ON -DPYTHON_EXECUTABLE=/usr/bin/python3 -DPYTHON_INCLUDE_DIR=/usr/include/python3.8 -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.8.so .. \
-    && make -j 8 \
+    && make \
     && make install
