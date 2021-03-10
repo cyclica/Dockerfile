@@ -28,14 +28,14 @@ cmake wget build-essential ca-certificates \
 ENV RDBASE=/opt/rdkit
 ENV LD_LIBRARY_PATH=$RDBASE/lib:$LD_LIBRARY_PATH
 ENV PYTHONPATH=$RDBASE:$PYTHONPATH
-RUN wget https://github.com/rdkit/rdkit/archive/Release_2018_09_1.tar.gz -O rdkit.tgz \
+RUN wget https://github.com/rdkit/rdkit/archive/Release_2020_03_4.tar.gz -O rdkit.tgz \
     && mkdir $RDBASE \
     && tar xzvf rdkit.tgz -C $RDBASE --strip-components 1 \
     && cd $RDBASE \
     && mkdir build \
     && cd build \
     && cmake -DRDK_BUILD_INCHI_SUPPORT=ON -DPYTHON_EXECUTABLE=/usr/bin/python3 -DPYTHON_INCLUDE_DIR=/usr/include/python3.5m -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.5m.so -DRDK_BUILD_PGSQL=ON -DPostgreSQL_ROOT=/usr/lib/postgresql/10 -DPostgreSQL_TYPE_INCLUDE_DIR=/usr/include/postgresql/10/server .. \
-    && make \
+    && make -j $(nproc) \
     && make install
 RUN chmod +x $RDBASE/build/Code/PgSQL/rdkit/pgsql_install.sh && $RDBASE/build/Code/PgSQL/rdkit/pgsql_install.sh
 
