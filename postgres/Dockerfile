@@ -1,4 +1,4 @@
-FROM postgres:10
+FROM postgres:12
 MAINTAINER Steve Constable <steve.constable@cyclicarx.com>
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y locales
@@ -9,11 +9,11 @@ ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 RUN apt-get install -y \
 cmake wget build-essential ca-certificates \
-    postgresql-server-dev-10 \
-    postgresql-client \
-    postgresql-plpython-10 \
-    postgresql-plpython3-10 \
-    python-numpy \
+    postgresql-server-dev-12 \
+    postgresql-client-12 \
+    postgresql-plpython3-12 \
+    python3-dev \
+    python3-numpy \
     python-dev \
     sqlite3 \
     libsqlite3-dev \
@@ -28,13 +28,13 @@ cmake wget build-essential ca-certificates \
 ENV RDBASE=/opt/rdkit
 ENV LD_LIBRARY_PATH=$RDBASE/lib:$LD_LIBRARY_PATH
 ENV PYTHONPATH=$RDBASE:$PYTHONPATH
-RUN wget https://github.com/rdkit/rdkit/archive/Release_2018_09_1.tar.gz -O rdkit.tgz \
+RUN wget https://github.com/rdkit/rdkit/archive/Release_2020_03_4.tar.gz -O rdkit.tgz \
     && mkdir $RDBASE \
     && tar xzvf rdkit.tgz -C $RDBASE --strip-components 1 \
     && cd $RDBASE \
     && mkdir build \
     && cd build \
-    && cmake -DRDK_BUILD_INCHI_SUPPORT=ON -DPYTHON_EXECUTABLE=/usr/bin/python3 -DPYTHON_INCLUDE_DIR=/usr/include/python3.5m -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.5m.so -DRDK_BUILD_PGSQL=ON -DPostgreSQL_ROOT=/usr/lib/postgresql/10 -DPostgreSQL_TYPE_INCLUDE_DIR=/usr/include/postgresql/10/server .. \
+    && cmake -DRDK_BUILD_INCHI_SUPPORT=ON -DBoost_INCLUDE_DIR=/usr/include -DBoost_DIR=/usr/lib/x86_64-linux-gnu -DBoost_NO_BOOST_CMAKE=TRUE -DPYTHON_EXECUTABLE=/usr/bin/python3 -DPYTHON_INCLUDE_DIR=/usr/include/python3.9 -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.9.so -DRDK_BUILD_PGSQL=ON -DPostgreSQL_ROOT=/usr/lib/postgresql/12 -DPostgreSQL_TYPE_INCLUDE_DIR=/usr/include/postgresql/12/server .. \
     && make \
     && make install
 RUN chmod +x $RDBASE/build/Code/PgSQL/rdkit/pgsql_install.sh && $RDBASE/build/Code/PgSQL/rdkit/pgsql_install.sh
