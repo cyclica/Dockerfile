@@ -1,3 +1,4 @@
+# version 20211125
 FROM postgres:12
 MAINTAINER Steve Constable <steve.constable@cyclicarx.com>
 ENV DEBIAN_FRONTEND=noninteractive
