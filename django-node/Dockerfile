@@ -1,5 +1,5 @@
-# version: 20220121
-FROM cyclica/django:20220121
+# version: 20220411
+FROM cyclica/django:20220411
 
 MAINTAINER Steve Constable <steve.constable@cyclicarx.com>
 
