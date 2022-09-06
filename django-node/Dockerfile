@@ -1,5 +1,5 @@
 # version: 20220411
-FROM cyclica/django:20220411
+FROM cyclica/chemnix-lite:20220511
 
 MAINTAINER Steve Constable <steve.constable@cyclicarx.com>
 
@@ -9,6 +9,10 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get install -y \
     nodejs \
     swig \
-    libopenbabel-dev
+    libopenbabel-dev \
+    postgresql \
+    libxml2-dev \
+    libxslt1-dev \
+    libmysqlclient-dev
 
 RUN pip3 install freesasa
