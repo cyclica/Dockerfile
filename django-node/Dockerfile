@@ -1,5 +1,5 @@
-# version: 20220411
-FROM cyclica/chemnix-lite:20220511
+# version: 20220913
+FROM cyclica/chemnix-lite:20220913
 
 MAINTAINER Steve Constable <steve.constable@cyclicarx.com>
 
@@ -15,4 +15,3 @@ RUN apt-get install -y \
     libxslt1-dev \
     libmysqlclient-dev
 
-RUN pip3 install freesasa

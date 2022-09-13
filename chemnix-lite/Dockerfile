@@ -1,5 +1,5 @@
-# version: 20220511
-FROM ubuntu:20.04
+# version: 20220913
+FROM ubuntu:22.04
 MAINTAINER Steve Constable <steve.constable@cyclicarx.com>
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y locales
@@ -9,7 +9,13 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 RUN apt-get install -y \
-    libpq-dev \
+    libboost-filesystem-dev \
+    libboost-program-options-dev \
+    libboost-python-dev \
+    libboost-thread-dev \
     libcurl4-nss-dev \
+    libffi-dev \
+    libpq-dev \
     openbabel \
-    python3-pip
+    python3-pip \
+    swig
