@@ -1,4 +1,4 @@
-# version: 20220913
+# version: 20220919
 FROM ubuntu:22.04
 MAINTAINER Steve Constable <steve.constable@cyclicarx.com>
 ENV DEBIAN_FRONTEND=noninteractive
@@ -9,6 +9,7 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 RUN apt-get install -y \
+    git \
     libboost-filesystem-dev \
     libboost-program-options-dev \
     libboost-python-dev \
