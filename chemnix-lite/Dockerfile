@@ -1,4 +1,4 @@
-# version: 20230620
+# version: 20230621
 FROM ubuntu:22.04
 MAINTAINER Steve Constable <steve.constable@cyclicarx.com>
 ENV DEBIAN_FRONTEND=noninteractive
@@ -21,7 +21,12 @@ RUN apt-get install -y \
     libpangoft2-1.0.0 \
     libpq-dev \
     openbabel \
+    openjdk-11-jre-headless \
     python3-brotli \
     python3-cffi \
     python3-pip \
-    swig
+    swig \
+    wget
+RUN wget -c https://github.com/rdk/p2rank/releases/download/2.4/p2rank_2.4.tar.gz -P ./p2rank && \
+    tar zxf ./p2rank/p2rank_2.4.tar.gz  -C ./p2rank/
+ENV PATH "$PWD/p2rank/p2rank_2.4:$PATH"
